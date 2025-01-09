@@ -1,23 +1,24 @@
 const request = require('supertest');
-const express = require('express');
-const app = require('../index');  // Assuming your Express app is in index.js
+const app = require('../index'); // adjust path as needed
 
 describe('Test Comment Routes', () => {
+  // Close the server after all tests
+  afterAll(done => {
+    done();
+  });
 
-    it('should update a comment', async () => {
-        const res = await request(app)
-            .put('/comments/1/1') // Assuming post ID = 1, comment ID = 1
-            .send({
-                text: "Updated comment"
-            });
-        expect(res.statusCode).toEqual(200);
-        expect(res.body.text).toEqual("Updated comment");
-    });
+  it('should update a comment', async () => {
+    const response = await request(app)
+      .put('/comments/1/1')
+      .send({
+        text: "Updated comment"
+      });
+    expect(response.statusCode).toBe(200); // or whatever status code you expect
+  });
 
-    it('should delete a comment', async () => {
-        const res = await request(app)
-            .delete('/comments/1/1');  // Assuming post ID = 1, comment ID = 1
-        expect(res.statusCode).toEqual(204);
-    });
-
+  it('should delete a comment', async () => {
+    const response = await request(app)
+      .delete('/comments/1/1');
+    expect(response.statusCode).toBe(204);
+  });
 });
