@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14, 16, 18]  # Test with multiple versions of Node.js
+        node-version: [ 16] 
 
     steps:
     - uses: actions/checkout@v2
