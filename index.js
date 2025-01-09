@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const posts = require('./routes/posts');
-const comments = require('./routes/comments');
+const posts = require('./posts');
+const comments = require('./comments');
 
 app.use('/posts', posts);
 app.use('/comments', comments);
